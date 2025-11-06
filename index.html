@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vital4Z | NightCreator - Творческое портфолио</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #e4e4e4;
+            line-height: 1.6;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-center {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #e4e4e4;
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(102, 126, 234, 0.2);
+            color: #667eea;
+        }
+
+        .lang-switch {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.3rem;
+            border-radius: 10px;
+        }
+
+        .lang-btn {
+            padding: 0.5rem 1rem;
+            background: transparent;
+            color: #b8b8b8;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .lang-btn:hover {
+            color: #667eea;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 6rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #b8b8b8;
+            margin-bottom: 2rem;
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .gallery-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item-content {
+            padding: 1.5rem;
+        }
+
+        .gallery-item h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .writing-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .writing-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s;
+        }
+
+        .writing-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateX(10px);
+        }
+
+        .writing-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .writing-card .meta {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .writing-card p {
+            color: #b8b8b8;
+            line-height: 1.8;
+        }
+
+        .poem {
+            font-style: italic;
+            padding-left: 2rem;
+            border-left: 3px solid #764ba2;
+        }
+
+        .contact {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 4rem 2rem;
+        }
+
+        .contact h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact p {
+            color: #b8b8b8;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #888;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                flex-direction: column;
+            }
+
+            .nav-center {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Vital4Z | NightCreator</div>
+            <div class="nav-center">
+                <ul class="nav-links">
+                    <li><a href="#home" data-ru="Главная" data-en="Home">Главная</a></li>
+                    <li><a href="#gallery" data-ru="Галерея" data-en="Gallery">Галерея</a></li>
+                    <li><a href="#writing" data-ru="Тексты" data-en="Writing">Тексты</a></li>
+                    <li><a href="#contact" data-ru="Контакты" data-en="Contact">Контакты</a></li>
+                </ul>
+                <div class="lang-switch">
+                    <button class="lang-btn active" data-lang="ru">RU</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Vital4Z</h1>
+        <p class="subtitle">NightCreator</p>
+        <p class="hero-text" data-ru="Здесь живут мои творческие работы: арт, стихи и рассказы, созданные вместе с вдохновением и технологиями" data-en="Here live my creative works: art, poems and stories, created with inspiration and technology">Здесь живут мои творческие работы: арт, стихи и рассказы, созданные вместе с вдохновением и технологиями</p>
+    </section>
+
+    <section id="gallery" class="section">
+        <h2 class="section-title" data-ru="Галерея работ" data-en="Art Gallery">Галерея работ</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800" alt="Art work 1">
+                <div class="gallery-item-content">
+                    <h3 data-ru="Цифровая абстракция" data-en="Digital Abstraction">Цифровая абстракция</h3>
+                    <p data-ru="Игра света и цвета в современной интерпретации" data-en="Play of light and color in modern interpretation">Игра света и цвета в современной интерпретации</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?w=800" alt="Art work 2">
+                <div class="gallery-item-content">
+                    <h3 data-ru="Космические мотивы" data-en="Cosmic Motifs">Космические мотивы</h3>
+                    <p data-ru="Вдохновение бесконечностью вселенной" data-en="Inspired by the infinity of the universe">Вдохновение бесконечностью вселенной</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1535083783855-76ae62b2914e?w=800" alt="Art work 3">
+                <div class="gallery-item-content">
+                    <h3 data-ru="Градиенты мечты" data-en="Dream Gradients">Градиенты мечты</h3>
+                    <p data-ru="Переходы и трансформации цвета" data-en="Color transitions and transformations">Переходы и трансформации цвета</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="writing" class="section">
+        <h2 class="section-title" data-ru="Литературные работы" data-en="Literary Works">Литературные работы</h2>
+        <div class="writing-grid">
+            <div class="writing-card">
+                <h3 data-ru="Цифровые сны" data-en="Digital Dreams">Цифровые сны</h3>
+                <div class="meta" data-ru="Стихотворение • 2025" data-en="Poem • 2025">Стихотворение • 2025</div>
+                <div class="poem">
+                    <p data-ru="В мерцании пикселей на экране<br>Рождаются миры, что не видал никто,<br>Где краски льются в невесомом танце<br>И строки превращаются в полотно." data-en="In the flickering of pixels on the screen<br>Worlds are born that no one has seen,<br>Where colors flow in a weightless dance<br>And lines transform into canvas.">В мерцании пикселей на экране<br>Рождаются миры, что не видал никто,<br>Где краски льются в невесомом танце<br>И строки превращаются в полотно.</p>
+                </div>
+            </div>
+            
+            <div class="writing-card">
+                <h3 data-ru="Между мирами" data-en="Between Worlds">Между мирами</h3>
+                <div class="meta" data-ru="Рассказ • 2025" data-en="Story • 2025">Рассказ • 2025</div>
+                <p data-ru="Граница между реальным и цифровым стиралась с каждым днём. То, что начиналось как эксперимент, превратилось в новую форму искусства. Здесь можно было создавать миры, ограниченные только воображением..." data-en="The boundary between real and digital was blurring every day. What began as an experiment turned into a new form of art. Here one could create worlds limited only by imagination...">Граница между реальным и цифровым стиралась с каждым днём. То, что начиналось как эксперимент, превратилось в новую форму искусства. Здесь можно было создавать миры, ограниченные только воображением...</p>
+            </div>
+
+            <div class="writing-card">
+                <h3 data-ru="Палитра вечности" data-en="Palette of Eternity">Палитра вечности</h3>
+                <div class="meta" data-ru="Стихотворение • 2025" data-en="Poem • 2025">Стихотворение • 2025</div>
+                <div class="poem">
+                    <p data-ru="Смешаю синий с золотом рассвета,<br>Добавлю фиолетовых теней,<br>И вот уже готово – снова лето<br>В безумстве красочных идей." data-en="I'll mix blue with golden dawn,<br>Add some purple shadows,<br>And here it is – summer again<br>In the madness of colorful ideas.">Смешаю синий с золотом рассвета,<br>Добавлю фиолетовых теней,<br>И вот уже готово – снова лето<br>В безумстве красочных идей.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2 data-ru="Давайте на связи" data-en="Let's Stay Connected">Давайте на связи</h2>
+        <p data-ru="Всегда рад новым проектам и творческим коллаборациям" data-en="Always open to new projects and creative collaborations">Всегда рад новым проектам и творческим коллаборациям</p>
+        <div class="social-links">
+            <a href="mailto:your@email.com">Email</a>
+            <a href="#">Telegram</a>
+            <a href="#">Instagram</a>
+            <a href="#">Behance</a>
+        </div>
+    </section>
+
+    <footer>
+        <p data-ru="&copy; 2025 Vital4Z | NightCreator. Создано с любовью и вдохновением." data-en="&copy; 2025 Vital4Z | NightCreator. Created with love and inspiration.">&copy; 2025 Vital4Z | NightCreator. Создано с любовью и вдохновением.</p>
+    </footer>
+
+    <script>
+        const langButtons = document.querySelectorAll('.lang-btn');
+        let currentLang = 'ru';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            langButtons.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+
+            document.querySelectorAll('[data-ru]').forEach(element => {
+                const text = element.getAttribute(`data-${lang}`);
+                if (text) {
+                    element.innerHTML = text;
+                }
+            });
+
+            document.documentElement.lang = lang;
+        }
+
+        langButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchLanguage(btn.dataset.lang);
+            });
+        });
+    </script>
+</body>
+</html>
+
